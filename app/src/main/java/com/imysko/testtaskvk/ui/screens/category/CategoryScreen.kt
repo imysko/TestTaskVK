@@ -12,9 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.imysko.testtaskvk.ui.base.TopBarWithReturn
+import com.imysko.testtaskvk.ui.components.base.TopBarWithReturn
+import com.imysko.testtaskvk.ui.components.product.ProductList
 import com.imysko.testtaskvk.ui.entities.ProductUiModel
 import com.imysko.testtaskvk.ui.theme.TestTaskVKTheme
+import com.imysko.testtaskvk.ui.utils.NavDestinations
 
 @Composable
 fun CategoryScreen(
@@ -28,6 +30,9 @@ fun CategoryScreen(
         categoryTitle = categoryTitle,
         products = products,
         onBackClick = navController::popBackStack,
+        onProductClick = { product ->
+            navController.navigate("${NavDestinations.PRODUCT_SCREEN}/${product}")
+        },
     )
 }
 
@@ -36,6 +41,7 @@ fun CategoryScreen(
     categoryTitle: String,
     products: List<ProductUiModel>,
     onBackClick: () -> Unit,
+    onProductClick: (ProductUiModel) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -50,9 +56,11 @@ fun CategoryScreen(
                     .fillMaxSize()
                     .padding(it),
             ) {
-                products.forEach { product ->
-                    Text(text = product.title)
-                }
+                ProductList(
+                    products = products,
+                    onProductClick = onProductClick,
+                    onLoadMore = { },
+                )
             }
         },
     )
@@ -66,6 +74,7 @@ fun CategoryScreenPreview() {
             categoryTitle = "",
             products = emptyList(),
             onBackClick = { },
+            onProductClick = { },
         )
     }
 }

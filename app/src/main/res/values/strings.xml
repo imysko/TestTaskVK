@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">TestTaskVK</string>
+    <string name="catalog_screen_title">Catalog</string>
+    <string name="back_action">Back</string>
+    <string name="categories_action">Move to categories</string>
+    <string name="categories_title">Categories</string>
+    <string name="rating">rating</string>
+    <string name="out_stock">Product is out of stock</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="reload">Reload</string>
+    <string name="error">Something went wrong</string>
+    <string name="not_found">Nothing was found</string>
+    <string name="try_again">Try again</string>
 </resources>

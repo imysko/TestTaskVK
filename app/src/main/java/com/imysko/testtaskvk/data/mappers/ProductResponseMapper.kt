@@ -13,5 +13,7 @@ fun ProductResponse.mapToDomain() : Product = this.let { from ->
         stock = from.stock,
         brand = from.brand,
         category = from.category,
+        thumbnailUrl = from.thumbnail,
+        imagesUrl = from.images,
     )
 }

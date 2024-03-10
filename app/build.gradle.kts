@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.coroutines)
     implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.coil.compose)
     implementation(libs.dagger.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.dagger.hilt.compiler)

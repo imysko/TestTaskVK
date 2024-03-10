@@ -2,7 +2,7 @@ package com.imysko.testtaskvk.ui.screens.category
 
 import androidx.lifecycle.SavedStateHandle
 import com.imysko.testtaskvk.domain.usecase.GetProductListByCategoryUseCase
-import com.imysko.testtaskvk.ui.base.BaseViewModel
+import com.imysko.testtaskvk.ui.components.base.BaseViewModel
 import com.imysko.testtaskvk.ui.entities.ProductUiModel
 import com.imysko.testtaskvk.ui.mappers.mapToUiModel
 import com.imysko.testtaskvk.ui.utils.NavArguments

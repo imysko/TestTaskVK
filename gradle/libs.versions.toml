@@ -7,16 +7,17 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycle = "2.7.0"
-runtime-livedata = "1.6.2"
+runtime-livedata = "1.6.3"
 activityCompose = "1.8.2"
-composeBom = "2024.02.01"
-compose-material = "1.6.2"
-compose-material3 = "1.2.0"
+composeBom = "2024.02.02"
+compose-material = "1.6.3"
+compose-material3 = "1.2.1"
 retrofit2 = '2.9.0'
 okhttp = '5.0.0-alpha.11'
 dagger = "2.49"
 hilt = "1.2.0"
 navigation = "2.7.7"
+coil = "2.6.0"
 
 
 [libraries]
@@ -48,6 +49,7 @@ okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-i
 retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
 retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2" }
 retrofit2-converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit2" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # hilt/dagger
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }

@@ -1,5 +1,6 @@
 package com.imysko.testtaskvk.domain.usecase
 
+import androidx.compose.foundation.pager.PageSize
 import com.imysko.testtaskvk.domain.entities.Product
 import com.imysko.testtaskvk.domain.repositories.ProductsRepository
 import javax.inject.Inject
@@ -7,7 +8,7 @@ import javax.inject.Inject
 interface GetProductListUseCase {
 
     suspend operator fun invoke(
-        limit: Int = 20,
+        limit: Int,
         skip: Int = 0,
     ): Result<List<Product>>
 }

@@ -11,16 +11,26 @@ internal class ProductsRepositoryImpl @Inject constructor(
     private val service: ProductsService,
 ) : ProductsRepository {
 
+     private var totalProduct: Int? = null
+
     override suspend fun getProductList(
         limit: Int,
         skip: Int,
     ): Result<List<Product>> {
+        totalProduct?.let {
+            if (it <= skip) {
+                return Result.success(emptyList())
+            }
+        }
+
         val apiResponse  = service.getProductList(
             limit = limit,
             skip = skip,
         )
 
         apiResponse.body()?.let { productListResponse ->
+            totalProduct = productListResponse.total
+
             return Result.success(productListResponse.products.map { it.mapToDomain() })
         } ?: run {
             return Result.failure(
