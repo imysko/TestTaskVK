@@ -2,7 +2,6 @@ package com.imysko.testtaskvk.ui.screens.categories
 
 import com.imysko.testtaskvk.domain.usecase.GetCategoriesListUseCase
 import com.imysko.testtaskvk.ui.components.base.BaseViewModel
-import com.imysko.testtaskvk.ui.screens.catalog.CatalogUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

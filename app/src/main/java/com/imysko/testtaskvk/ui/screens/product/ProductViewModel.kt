@@ -2,7 +2,6 @@ package com.imysko.testtaskvk.ui.screens.product
 
 import androidx.lifecycle.SavedStateHandle
 import com.google.gson.Gson
-import com.imysko.testtaskvk.domain.entities.Product
 import com.imysko.testtaskvk.ui.components.base.BaseViewModel
 import com.imysko.testtaskvk.ui.entities.ProductUiModel
 import com.imysko.testtaskvk.ui.utils.NavArguments
