@@ -15,4 +15,6 @@
     <string name="next">Next</string>
     <string name="product_image">Product image</string>
     <string name="image_placeholder" translatable="false">Image placeholder</string>
+    <string name="clear_search_line">Clear search line</string>
+    <string name="search">Search</string>
 </resources>

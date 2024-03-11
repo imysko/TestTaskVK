@@ -15,4 +15,6 @@
     <string name="previous">Предыдущий</string>
     <string name="next">Слудующий</string>
     <string name="product_image">Изображение товара</string>
+    <string name="clear_search_line">Очистить строку поиска</string>
+    <string name="search">Поиск</string>
 </resources>

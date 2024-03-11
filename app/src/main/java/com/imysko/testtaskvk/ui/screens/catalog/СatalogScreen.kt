@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.imysko.testtaskvk.R
+import com.imysko.testtaskvk.ui.components.base.SearchLine
 import com.imysko.testtaskvk.ui.components.base.TopBarWithReturn
 import com.imysko.testtaskvk.ui.entities.ProductUiModel
 import com.imysko.testtaskvk.ui.theme.TestTaskVKTheme
@@ -41,6 +42,7 @@ fun CatalogScreen(
         },
         onLoadMore = viewModel::getMoreProducts,
         onReloadButtonClick = viewModel::reloadProducts,
+        onSearchDone = viewModel::searchProduct,
     )
 }
 
@@ -51,6 +53,7 @@ fun CatalogScreen(
     onProductClick: (ProductUiModel) -> Unit,
     onLoadMore: () -> Unit,
     onReloadButtonClick: () -> Unit,
+    onSearchDone: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -76,6 +79,10 @@ fun CatalogScreen(
                     .fillMaxSize()
                     .padding(it),
             ) {
+                SearchLine(
+                    onSearchDone = onSearchDone,
+                )
+
                 ProductsListContent(
                     uiState = uiState,
                     onProductClick = onProductClick,
@@ -102,6 +109,7 @@ fun CatalogScreenPreview(
             onProductClick = { },
             onLoadMore = { },
             onReloadButtonClick = { },
+            onSearchDone = { },
         )
     }
 }
@@ -116,6 +124,7 @@ fun CatalogScreenLoadingPreview() {
             onProductClick = { },
             onLoadMore = { },
             onReloadButtonClick = { },
+            onSearchDone = { },
         )
     }
 }
@@ -130,6 +139,7 @@ fun CatalogScreenNotFoundPreview() {
             onProductClick = { },
             onLoadMore = { },
             onReloadButtonClick = { },
+            onSearchDone = { },
         )
     }
 }
@@ -144,6 +154,7 @@ fun CatalogScreenErrorPreview() {
             onProductClick = { },
             onLoadMore = { },
             onReloadButtonClick = { },
+            onSearchDone = { },
         )
     }
 }
@@ -158,6 +169,7 @@ fun CatalogScreenNoInternetConnectionPreview() {
             onProductClick = { },
             onLoadMore = { },
             onReloadButtonClick = { },
+            onSearchDone = { },
         )
     }
 }
