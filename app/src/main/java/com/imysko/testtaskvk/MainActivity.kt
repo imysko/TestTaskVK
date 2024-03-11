@@ -8,8 +8,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.imysko.testtaskvk.ui.components.NavGraph
-import com.imysko.testtaskvk.ui.theme.TestTaskVKTheme
+import com.imysko.testtaskvk.presentation.ui.components.NavGraph
+import com.imysko.testtaskvk.presentation.ui.theme.TestTaskVKTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
