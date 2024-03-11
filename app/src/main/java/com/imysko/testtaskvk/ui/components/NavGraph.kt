@@ -7,9 +7,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.imysko.testtaskvk.ui.entities.navigation.ProductUiModelArgType
-import com.imysko.testtaskvk.ui.screens.categories.CategoriesScreen
-import com.imysko.testtaskvk.ui.screens.category.CategoryScreen
 import com.imysko.testtaskvk.ui.screens.catalog.CatalogScreen
+import com.imysko.testtaskvk.ui.screens.catalog.category.CategoryScreen
+import com.imysko.testtaskvk.ui.screens.categories.CategoriesScreen
 import com.imysko.testtaskvk.ui.screens.product.ProductScreen
 import com.imysko.testtaskvk.ui.utils.NavArguments
 import com.imysko.testtaskvk.ui.utils.NavDestinations

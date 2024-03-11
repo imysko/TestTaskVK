@@ -8,7 +8,7 @@ interface GetProductListByCategoryUseCase {
 
     suspend operator fun invoke(
         category: String,
-        limit: Int = 20,
+        limit: Int,
         skip: Int = 0,
     ): Result<List<Product>>
 }

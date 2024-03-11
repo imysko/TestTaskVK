@@ -2,7 +2,7 @@ package com.imysko.testtaskvk.ui.screens.categories
 
 sealed class CategoriesUiState {
 
-    data class MainState(
+    data class ShowCategoriesList(
         val categories: List<String>,
     ) : CategoriesUiState()
 

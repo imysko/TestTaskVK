@@ -1,5 +1,6 @@
 package com.imysko.testtaskvk.ui.components.product
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,7 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -55,115 +58,142 @@ fun ProductCard(
         ),
         onClick = { onClick(product) },
     ) {
-        Row {
-            SubcomposeAsyncImage(
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            ProductThumbnail(thumbnailUrl = product.thumbnailUrl)
+            ProductInformation(product = product)
+        }
+    }
+}
+
+@Composable
+private fun ProductThumbnail(
+    thumbnailUrl: String,
+) {
+    SubcomposeAsyncImage(
+        modifier = Modifier
+            .size(100.dp)
+            .clip(RoundedCornerShape(8.dp)),
+        model = thumbnailUrl,
+        contentDescription = stringResource(id = R.string.product_image),
+        contentScale = ContentScale.FillWidth,
+        loading = {
+            Box(
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(RoundedCornerShape(8.dp)),
-                model = product.thumbnailUrl,
-                contentDescription = null,
-                contentScale = ContentScale.Crop, // TODO: разобраться с масштабом
-                loading = {
-                    Box(
-                        modifier = Modifier
-                            .size(100.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .shimmerEffect(),
-                    )
-                },
-                error = {
-                    // TODO
-                },
+                    .clip(RoundedCornerShape(8.dp))
+                    .shimmerEffect(),
+            )
+        },
+        error = {
+            Box(
+                modifier = Modifier
+                    .size(100.dp),
+            ) {
+                Image(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(60.dp),
+                    painter = painterResource(id = R.drawable.image_gallery),
+                    contentDescription = stringResource(id = R.string.image_placeholder),
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                )
+            }
+        },
+    )
+}
+
+@Composable
+private fun ProductInformation(
+    product: ProductUiModel,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Column {
+            Text(
+                text = product.title,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.SemiBold,
+                ),
             )
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Column {
-                    Text(
-                        text = product.title,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.SemiBold,
-                        ),
-                    )
+            Text(
+                text = product.brand,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Gray,
+                ),
+            )
+        }
 
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Bottom,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    imageVector = Icons.Filled.Star,
+                    tint = Orange,
+                    contentDescription = stringResource(id = R.string.rating),
+                )
+                Text(
+                    text = product.rating.toString(),
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.SemiBold,
+                    ),
+                )
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.Bottom,
+            ) {
+                if (!product.hasStock) {
                     Text(
-                        text = product.brand,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            fontWeight = FontWeight.SemiBold,
+                        text = stringResource(id = R.string.out_stock),
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Medium,
                             color = Color.Gray,
                         ),
                     )
-                }
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(
-                            modifier = Modifier.size(24.dp),
-                            imageVector = Icons.Filled.Star,
-                            tint = Orange,
-                            contentDescription = stringResource(id = R.string.rating),
-                        )
-                        Text(
-                            text = product.rating.toString(),
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = FontWeight.SemiBold,
-                            ),
-                        )
-                    }
-
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.Bottom,
-                    ) {
-                        if (!product.hasStock) {
-                            Text(
-                                text = stringResource(id = R.string.out_stock),
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    fontWeight = FontWeight.Medium,
-                                    color = Color.Gray,
-                                ),
-                            )
-                        } else if (product.hasDiscount) {
-                            Text(
-                                text = "${product.discountPrice} $",
-                                style = MaterialTheme.typography.bodyLarge.copy(
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = Red,
-                                ),
-                            )
-                            Text(
-                                text = "${product.price} $",
-                                textDecoration = TextDecoration.LineThrough,
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = Color.Gray,
-                                ),
-                            )
-                        } else {
-                            Text(
-                                text = "${product.price} $",
-                                style = MaterialTheme.typography.bodyLarge.copy(
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                ),
-                            )
-                        }
-                    }
+                } else if (product.hasDiscount) {
+                    Text(
+                        text = "${product.discountPrice} $",
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Red,
+                        ),
+                    )
+                    Text(
+                        text = "${product.price} $",
+                        textDecoration = TextDecoration.LineThrough,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            color = Color.Gray,
+                        ),
+                    )
+                } else {
+                    Text(
+                        text = "${product.price} $",
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                        ),
+                    )
                 }
             }
         }

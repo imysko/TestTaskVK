@@ -1,4 +1,4 @@
-package com.imysko.testtaskvk.ui.components.base
+package com.imysko.testtaskvk.ui.screens
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
@@ -12,7 +12,7 @@ import java.net.SocketTimeoutException
 open class BaseViewModel : LifecycleObserver, ViewModel() {
 
     protected fun <T> call(
-        apiCall: suspend () -> Result<T>,
+        useCaseCall: suspend () -> Result<T>,
         onSuccess: ((T) -> Unit)? = null,
         onError: ((Throwable) -> Unit)? = null,
         onNetworkUnavailable: (suspend () -> Unit)? = null,
@@ -20,7 +20,7 @@ open class BaseViewModel : LifecycleObserver, ViewModel() {
     ) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             try {
-                val result = apiCall.invoke()
+                val result = useCaseCall.invoke()
 
                 result.getOrNull()?.let { value ->
                     onSuccess?.invoke(value)

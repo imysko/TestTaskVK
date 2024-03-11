@@ -12,4 +12,7 @@
     <string name="error">Что-то пошло не так</string>
     <string name="not_found">Ничего не найдено</string>
     <string name="try_again">Попробовать снова</string>
+    <string name="previous">Предыдущий</string>
+    <string name="next">Слудующий</string>
+    <string name="product_image">Изображение товара</string>
 </resources>

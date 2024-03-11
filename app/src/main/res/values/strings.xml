@@ -11,4 +11,8 @@
     <string name="error">Something went wrong</string>
     <string name="not_found">Nothing was found</string>
     <string name="try_again">Try again</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="product_image">Product image</string>
+    <string name="image_placeholder" translatable="false">Image placeholder</string>
 </resources>

@@ -75,25 +75,13 @@ fun CategoriesScreen(
                     .padding(it),
             ) {
                 when (uiState) {
-                    is CategoriesUiState.MainState -> {
+                    is CategoriesUiState.ShowCategoriesList -> {
                         LazyColumn {
                             itemsIndexed(uiState.categories) { index, category ->
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable { onCategoryClick(category) }
-                                        .padding(vertical = 10.dp, horizontal = 20.dp),
-                                    horizontalArrangement = Arrangement.SpaceBetween,
-                                    verticalAlignment = Alignment.CenterVertically,
-                                ) {
-                                    Text(text = category)
-
-                                    Icon(
-                                        modifier = Modifier.size(36.dp),
-                                        imageVector = Icons.AutoMirrored.Outlined.NavigateNext,
-                                        contentDescription = null,
-                                    )
-                                }
+                                CategoryItem(
+                                    category = category,
+                                    onClick = onCategoryClick,
+                                )
 
                                 if (index < uiState.categories.lastIndex) {
                                     HorizontalDivider(thickness = 2.dp)
@@ -140,11 +128,34 @@ fun CategoriesScreen(
 }
 
 @Composable
-@Preview(showBackground = true, name = "Categories main state")
+private fun CategoryItem(
+    category: String,
+    onClick: (String) -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick(category) }
+            .padding(vertical = 10.dp, horizontal = 20.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(text = category)
+
+        Icon(
+            modifier = Modifier.size(36.dp),
+            imageVector = Icons.AutoMirrored.Outlined.NavigateNext,
+            contentDescription = null,
+        )
+    }
+}
+
+@Composable
+@Preview(showBackground = true, name = "Categories list")
 fun CategoriesScreenPreview() {
     TestTaskVKTheme {
         CategoriesScreen(
-            uiState = CategoriesUiState.MainState(listOf("first", "second")),
+            uiState = CategoriesUiState.ShowCategoriesList(listOf("first", "second")),
             onBackClick = { },
             onCategoryClick = { },
             onReloadButtonClick = { },
@@ -153,7 +164,7 @@ fun CategoriesScreenPreview() {
 }
 
 @Composable
-@Preview(showBackground = true, name = "Categories loading")
+@Preview(showBackground = true, name = "Categories loading state")
 fun CategoriesScreenLoadingPreview() {
     TestTaskVKTheme {
         CategoriesScreen(
@@ -166,7 +177,7 @@ fun CategoriesScreenLoadingPreview() {
 }
 
 @Composable
-@Preview(showBackground = true, name = "Categories not found")
+@Preview(showBackground = true, name = "Categories not found state")
 fun CategoriesScreenNotFoundPreview() {
     TestTaskVKTheme {
         CategoriesScreen(
@@ -179,7 +190,7 @@ fun CategoriesScreenNotFoundPreview() {
 }
 
 @Composable
-@Preview(showBackground = true, name = "Categories error")
+@Preview(showBackground = true, name = "Categories error state")
 fun CategoriesScreenErrorPreview() {
     TestTaskVKTheme {
         CategoriesScreen(
@@ -192,7 +203,7 @@ fun CategoriesScreenErrorPreview() {
 }
 
 @Composable
-@Preview(showBackground = true, name = "Categories no internet connection")
+@Preview(showBackground = true, name = "Categories no internet connection state")
 fun CategoriesScreenNoInternetConnectionPreview() {
     TestTaskVKTheme {
         CategoriesScreen(
