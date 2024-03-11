@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="items_in_stock">
+        <item quantity="one">В наличии: %d штука</item>
+        <item quantity="few">В наличии: %d штуки</item>
+        <item quantity="many">В наличии: %d штук</item>
+    </plurals>
+</resources>

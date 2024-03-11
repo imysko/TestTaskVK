@@ -17,4 +17,7 @@
     <string name="image_placeholder" translatable="false">Image placeholder</string>
     <string name="clear_search_line">Clear search line</string>
     <string name="search">Search</string>
+    <string name="description">Description</string>
+    <string name="brand">Brand</string>
+    <string name="category">Category</string>
 </resources>

@@ -17,4 +17,7 @@
     <string name="product_image">Изображение товара</string>
     <string name="clear_search_line">Очистить строку поиска</string>
     <string name="search">Поиск</string>
+    <string name="description">Описание</string>
+    <string name="brand">Бренд</string>
+    <string name="category">Категория</string>
 </resources>

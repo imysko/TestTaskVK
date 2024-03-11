@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
@@ -146,7 +146,7 @@ private fun ProductInformation(
             ) {
                 Icon(
                     modifier = Modifier.size(24.dp),
-                    imageVector = Icons.Filled.Star,
+                    imageVector = Icons.Rounded.Star,
                     tint = Orange,
                     contentDescription = stringResource(id = R.string.rating),
                 )
