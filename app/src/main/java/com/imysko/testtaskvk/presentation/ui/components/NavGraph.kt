@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.imysko.testtaskvk.presentation.entities.navigation.CategoryUiModelArgType
 import com.imysko.testtaskvk.presentation.entities.navigation.NavArguments
 import com.imysko.testtaskvk.presentation.entities.navigation.NavDestinations
 import com.imysko.testtaskvk.presentation.entities.navigation.ProductUiModelArgType
@@ -32,16 +33,20 @@ fun NavGraph(
         }
 
         composable(
-            route = "${NavDestinations.CATEGORY_SCREEN}/{${NavArguments.CATEGORY}}",
+            route = "${NavDestinations.CATEGORY_SCREEN}/{${NavArguments.CATEGORY}}/" +
+                    "{${NavArguments.CATEGORY_TITLE}}",
             arguments = listOf(
                 navArgument(NavArguments.CATEGORY) {
-                    type = NavType.StringType
+                    type = CategoryUiModelArgType()
                 },
+                navArgument(NavArguments.CATEGORY_TITLE) {
+                    type = NavType.StringType
+                }
             ),
         ) {
             CategoryScreen(
                 navController = navController,
-                categoryTitle = it.arguments?.getString(NavArguments.CATEGORY) ?: "",
+                categoryTitle = it.arguments?.getString(NavArguments.CATEGORY_TITLE) ?: "",
             )
         }
         

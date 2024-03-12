@@ -14,7 +14,7 @@ data class ProductUiModel(
     val hasStock: Boolean,
     val stock: Int,
     val brand: String,
-    val category: String,
+    val category: CategoryUiModel,
     val thumbnailUrl: String,
     val imagesUrl: List<String>,
 ) {

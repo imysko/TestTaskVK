@@ -3,7 +3,7 @@ package com.imysko.testtaskvk
 import com.imysko.testtaskvk.data.MockCategoriesRepository
 import com.imysko.testtaskvk.domain.usecase.GetCategoriesListUseCaseImpl
 import kotlinx.coroutines.test.runTest
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 internal class GetCategoriesListUseCaseTest {
@@ -17,7 +17,7 @@ internal class GetCategoriesListUseCaseTest {
         val actualResult = useCase()
         val expectedResult = stubSuccessCategoriesList()
 
-        Assertions.assertThat(actualResult.isFailure).isEqualTo(expectedResult.isFailure)
+        assertThat(actualResult.isFailure).isEqualTo(expectedResult.isFailure)
     }
 
     @Test
@@ -29,7 +29,7 @@ internal class GetCategoriesListUseCaseTest {
         val actualResult = useCase()
         val expectedResult = stubFailureCategoriesList()
 
-        Assertions.assertThat(actualResult.isFailure).isEqualTo(expectedResult.isFailure)
+        assertThat(actualResult.isFailure).isEqualTo(expectedResult.isFailure)
     }
 
     companion object {

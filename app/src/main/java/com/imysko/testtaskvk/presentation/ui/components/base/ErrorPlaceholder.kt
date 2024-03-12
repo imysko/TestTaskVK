@@ -23,10 +23,11 @@ import com.imysko.testtaskvk.presentation.ui.theme.TestTaskVKTheme
 
 @Composable
 fun ErrorPlaceholder(
+    modifier: Modifier = Modifier,
     onReloadButtonClick: () -> Unit,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterVertically),
     ) {

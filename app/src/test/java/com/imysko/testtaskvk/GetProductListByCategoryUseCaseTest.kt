@@ -1,10 +1,11 @@
 package com.imysko.testtaskvk
 
 import com.imysko.testtaskvk.data.MockProductsRepository
+import com.imysko.testtaskvk.domain.entities.Category
 import com.imysko.testtaskvk.domain.entities.Product
 import com.imysko.testtaskvk.domain.usecase.GetProductListByCategoryUseCaseImpl
 import kotlinx.coroutines.test.runTest
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class GetProductListByCategoryUseCaseTest {
@@ -17,7 +18,7 @@ class GetProductListByCategoryUseCaseTest {
         val actualResult = useCase("laptops", PAGE_SIZE, 0)
         val expectedResult = stubSuccessProductList()
 
-        Assertions.assertThat(actualResult).usingRecursiveComparison().isEqualTo(expectedResult)
+        assertThat(actualResult).usingRecursiveComparison().isEqualTo(expectedResult)
     }
 
     @Test
@@ -29,7 +30,7 @@ class GetProductListByCategoryUseCaseTest {
         val actualResult = useCase("laptops", PAGE_SIZE, 0)
         val expectedResult = stubFailureProductList()
 
-        Assertions.assertThat(actualResult.isFailure).isEqualTo(expectedResult.isFailure)
+        assertThat(actualResult.isFailure).isEqualTo(expectedResult.isFailure)
     }
 
     companion object {
@@ -46,7 +47,9 @@ class GetProductListByCategoryUseCaseTest {
                         rating = 4.3f,
                         stock = 0,
                         brand = "Apple",
-                        category = "laptops",
+                        category = Category(
+                            name = "laptops",
+                        ),
                         thumbnailUrl = "https://cdn.dummyjson.com/product-images/6/thumbnail.png",
                         imagesUrl = listOf(
                             "https://cdn.dummyjson.com/product-images/6/1.png",

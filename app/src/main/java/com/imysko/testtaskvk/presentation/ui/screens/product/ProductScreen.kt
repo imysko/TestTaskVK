@@ -97,7 +97,7 @@ fun ProductScreen(
 @Composable
 private fun ProductBody(
     innerPadding: PaddingValues,
-    product: ProductUiModel
+    product: ProductUiModel,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -139,7 +139,7 @@ private fun ProductBody(
         item {
             ProductDetailLabel(
                 brand = product.brand,
-                category = product.category,
+                category = product.category.title,
             )
         }
         item {

@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.imysko.testtaskvk.R
@@ -15,6 +16,7 @@ import com.imysko.testtaskvk.presentation.entities.ProductUiModel
 import com.imysko.testtaskvk.presentation.ui.components.base.ErrorPlaceholder
 import com.imysko.testtaskvk.presentation.ui.components.base.NoInternetConnectionPlaceholder
 import com.imysko.testtaskvk.presentation.ui.components.product.ProductList
+import com.imysko.testtaskvk.utils.TestTags
 
 @Composable
 fun ProductsListContent(
@@ -35,7 +37,9 @@ fun ProductsListContent(
 
         ProductsListUiState.OnLoading -> {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .testTag(TestTags.PRODUCTS_LIST_ON_LOADING)
+                    .fillMaxSize(),
             ) {
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center),
@@ -45,7 +49,9 @@ fun ProductsListContent(
 
         ProductsListUiState.NotFound -> {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .testTag(TestTags.PRODUCTS_LIST_NOT_FOUND)
+                    .fillMaxSize(),
             ) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
@@ -59,12 +65,14 @@ fun ProductsListContent(
 
         ProductsListUiState.OnError -> {
             ErrorPlaceholder(
+                modifier = Modifier.testTag(TestTags.PRODUCTS_LIST_ON_ERROR),
                 onReloadButtonClick = onReloadButtonClick,
             )
         }
 
         ProductsListUiState.NoInternetConnection -> {
             NoInternetConnectionPlaceholder(
+                modifier = Modifier.testTag(TestTags.PRODUCTS_LIST_NO_INTERNET_CONNECTION),
                 onReloadButtonClick = onReloadButtonClick,
             )
         }

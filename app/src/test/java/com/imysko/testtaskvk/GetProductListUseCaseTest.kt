@@ -1,6 +1,7 @@
 package com.imysko.testtaskvk
 
 import com.imysko.testtaskvk.data.MockProductsRepository
+import com.imysko.testtaskvk.domain.entities.Category
 import com.imysko.testtaskvk.domain.entities.Product
 import com.imysko.testtaskvk.domain.usecase.GetProductListUseCaseImpl
 import kotlinx.coroutines.test.runTest
@@ -58,7 +59,9 @@ internal class GetProductListUseCaseTest {
                         rating = 4.3f,
                         stock = 0,
                         brand = "Apple",
-                        category = "laptops",
+                        category = Category(
+                            name = "laptops"
+                        ),
                         thumbnailUrl = "https://cdn.dummyjson.com/product-images/6/thumbnail.png",
                         imagesUrl = listOf(
                             "https://cdn.dummyjson.com/product-images/6/1.png",
@@ -82,7 +85,9 @@ internal class GetProductListUseCaseTest {
                         rating = 4.7f,
                         stock = 2,
                         brand = "Apple",
-                        category = "smartphones",
+                        category = Category(
+                            name = "smartphones"
+                        ),
                         thumbnailUrl = "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
                         imagesUrl = listOf(
                             "https://cdn.dummyjson.com/product-images/2/1.jpg",

@@ -1,14 +1,16 @@
 package com.imysko.testtaskvk.data
 
+import com.imysko.testtaskvk.data.mappers.mapToDomainCategory
+import com.imysko.testtaskvk.domain.entities.Category
 import com.imysko.testtaskvk.domain.repositories.CategoriesRepository
 
 internal class MockCategoriesRepository(
     private val isSuccessResult: Boolean,
 ) : CategoriesRepository {
 
-    override suspend fun getCategoriesList(): Result<List<String>> {
+    override suspend fun getCategoriesList(): Result<List<Category>> {
         return if (isSuccessResult) {
-            Result.success(mockCategoriesList())
+            Result.success(mockCategoriesList().map { it.mapToDomainCategory() })
         } else {
             Result.failure(Throwable("Throwable"))
         }

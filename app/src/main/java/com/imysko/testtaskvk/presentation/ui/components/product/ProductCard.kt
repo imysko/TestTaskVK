@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +43,7 @@ import com.imysko.testtaskvk.presentation.ui.theme.Orange
 import com.imysko.testtaskvk.presentation.ui.theme.Red
 import com.imysko.testtaskvk.presentation.ui.theme.TestTaskVKTheme
 import com.imysko.testtaskvk.presentation.utils.preview.ProductUiModelPreviewParameterProvider
+import com.imysko.testtaskvk.utils.TestTags
 
 @Composable
 fun ProductCard(
@@ -50,6 +52,7 @@ fun ProductCard(
 ) {
     ElevatedCard(
         modifier = Modifier
+            .testTag(TestTags.PRODUCT_CARD)
             .fillMaxWidth()
             .height(100.dp),
         shape = RoundedCornerShape(8.dp),
@@ -77,7 +80,7 @@ private fun ProductThumbnail(
             .clip(RoundedCornerShape(8.dp)),
         model = thumbnailUrl,
         contentDescription = stringResource(id = R.string.product_image),
-        contentScale = ContentScale.FillWidth,
+        contentScale = ContentScale.Crop,
         loading = {
             Box(
                 modifier = Modifier
@@ -164,6 +167,7 @@ private fun ProductInformation(
             ) {
                 if (!product.hasStock) {
                     Text(
+                        modifier = Modifier.testTag(TestTags.PRODUCT_CARD_OUT_STOCK),
                         text = stringResource(id = R.string.out_stock),
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Medium,
@@ -172,6 +176,7 @@ private fun ProductInformation(
                     )
                 } else if (product.hasDiscount) {
                     Text(
+                        modifier = Modifier.testTag(TestTags.PRODUCT_CARD_DISCOUNT_PRICE),
                         text = "${product.discountPrice} $",
                         style = MaterialTheme.typography.bodyLarge.copy(
                             fontSize = 20.sp,
@@ -188,6 +193,7 @@ private fun ProductInformation(
                     )
                 } else {
                     Text(
+                        modifier = Modifier.testTag(TestTags.PRODUCT_CARD_PRICE),
                         text = "${product.price} $",
                         style = MaterialTheme.typography.bodyLarge.copy(
                             fontSize = 20.sp,

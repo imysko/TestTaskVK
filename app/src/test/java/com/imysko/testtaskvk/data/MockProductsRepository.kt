@@ -1,5 +1,6 @@
 package com.imysko.testtaskvk.data
 
+import com.imysko.testtaskvk.domain.entities.Category
 import com.imysko.testtaskvk.domain.entities.Product
 import com.imysko.testtaskvk.domain.repositories.ProductsRepository
 
@@ -37,7 +38,7 @@ internal class MockProductsRepository(
         return if (isSuccessResult) {
             Result.success(
                 mockProductList()
-                    .filter { it.category == category }
+                    .filter { it.category.name == category }
                     .drop(skip)
                     .take(limit)
             )
@@ -56,7 +57,9 @@ internal class MockProductsRepository(
                 rating = 3.7f,
                 stock = 94,
                 brand = "Apple",
-                category = "smartphones",
+                category = Category(
+                    name = "smartphones"
+                ),
                 thumbnailUrl = "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
                 imagesUrl = listOf(
                     "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -74,7 +77,9 @@ internal class MockProductsRepository(
                 rating = 4.7f,
                 stock = 2,
                 brand = "Apple",
-                category = "smartphones",
+                category = Category(
+                    name = "smartphones"
+                ),
                 thumbnailUrl = "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
                 imagesUrl = listOf(
                     "https://cdn.dummyjson.com/product-images/2/1.jpg",
@@ -91,7 +96,9 @@ internal class MockProductsRepository(
                 rating = 4.3f,
                 stock = 0,
                 brand = "Apple",
-                category = "laptops",
+                category = Category(
+                    name = "laptops"
+                ),
                 thumbnailUrl = "https://cdn.dummyjson.com/product-images/6/thumbnail.png",
                 imagesUrl = listOf(
                     "https://cdn.dummyjson.com/product-images/6/1.png",

@@ -1,6 +1,7 @@
 package com.imysko.testtaskvk.presentation.utils.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.imysko.testtaskvk.presentation.entities.CategoryUiModel
 import com.imysko.testtaskvk.presentation.entities.ProductUiModel
 
 class ProductUiModelPreviewParameterProvider :
@@ -18,7 +19,10 @@ class ProductUiModelPreviewParameterProvider :
             hasStock = true,
             stock = 94,
             brand = "Apple",
-            category = "smartphones",
+            category = CategoryUiModel(
+                name = "smartphones",
+                title = "Smartphones",
+            ),
             thumbnailUrl = "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
             imagesUrl = listOf(
                 "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -39,7 +43,10 @@ class ProductUiModelPreviewParameterProvider :
             hasStock = true,
             stock = 1,
             brand = "Apple",
-            category = "smartphones",
+            category = CategoryUiModel(
+                name = "smartphones",
+                title = "Smartphones",
+            ),
             thumbnailUrl = "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
             imagesUrl = listOf(
                 "https://cdn.dummyjson.com/product-images/1/1.jpg",
@@ -60,7 +67,10 @@ class ProductUiModelPreviewParameterProvider :
             hasStock = false,
             stock = 0,
             brand = "Apple",
-            category = "smartphones",
+            category = CategoryUiModel(
+                name = "smartphones",
+                title = "Smartphones",
+            ),
             thumbnailUrl = "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
             imagesUrl = listOf(
                 "https://cdn.dummyjson.com/product-images/1/1.jpg",

@@ -18,7 +18,7 @@ fun Product.mapToUiModel() : ProductUiModel = this.let { from ->
         hasStock = from.stock > 0,
         stock = from.stock,
         brand = from.brand,
-        category = from.category,
+        category = from.category.mapToUiModel(),
         thumbnailUrl = from.thumbnailUrl,
         imagesUrl = from.imagesUrl,
     )

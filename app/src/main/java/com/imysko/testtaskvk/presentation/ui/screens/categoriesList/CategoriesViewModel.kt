@@ -1,6 +1,7 @@
 package com.imysko.testtaskvk.presentation.ui.screens.categoriesList
 
 import com.imysko.testtaskvk.domain.usecase.GetCategoriesListUseCase
+import com.imysko.testtaskvk.presentation.mappers.mapToUiModel
 import com.imysko.testtaskvk.presentation.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +31,11 @@ class CategoriesViewModel @Inject constructor(
             },
             onSuccess = { categoriesList ->
                 if (categoriesList.any()) {
-                    _uiState.tryEmit(CategoriesUiState.ShowCategoriesList(categoriesList))
+                    _uiState.tryEmit(
+                        CategoriesUiState.ShowCategoriesList(
+                            categories = categoriesList.map { it.mapToUiModel() },
+                        )
+                    )
                 } else {
                     _uiState.tryEmit(CategoriesUiState.NotFound)
                 }
